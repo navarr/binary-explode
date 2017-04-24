@@ -11,14 +11,12 @@
  */
 function binary_explode_log($number)
 {
-    $number = intval($number, 10);
-
+    $number = intval($number);
     $parts = [];
     while ($number > 0) {
-        $power = log($number, 2);
-        $power = floor($power);
-        $part = pow(2, $power);
-        $number = $number - $part;
+        $power = log($number, 2) | 0;
+        $part = 1 << $power;
+        $number -= $part;
         $parts[] = $part;
     }
     return $parts;
