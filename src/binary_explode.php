@@ -11,17 +11,15 @@
  */
 function binary_explode($number)
 {
-    $number = intval($number, 10);
-
+    $number = intval($number);
     $parts = [];
     $power = 0;
     while ($number > 0) {
-        $test = pow(2, $power);
+        $test = 1 << $power++;
         if (($number & $test) == $test) {
             $number -= $test;
             $parts[] = $test;
         }
-        ++$power;
     }
 
     return $parts;
