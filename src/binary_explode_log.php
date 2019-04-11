@@ -11,7 +11,7 @@
  */
 function binary_explode_log($number)
 {
-    $number = intval($number);
+    $number = (int)$number;
     $parts = [];
     while ($number > 0) {
         $power = log($number, 2) | 0;
