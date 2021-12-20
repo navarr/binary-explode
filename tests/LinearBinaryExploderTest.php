@@ -1,19 +1,23 @@
 <?php
 
-namespace Navarr\ExplodeBitwise\Test;
+namespace Navarr\BinaryExploder\Test;
 
-class TestBinaryExplodeLog extends \PHPUnit_Framework_TestCase
+use Navarr\BinaryExploder\LinearBinaryExploder;
+use PHPUnit\Framework\TestCase;
+
+class LinearBinaryExploderTest extends TestCase
 {
     public function retrieveResult($number)
     {
-        return binary_explode_log($number);
+        $exploder = new LinearBinaryExploder();
+        $result = $exploder->explode($number);
+        return iterator_to_array($result);
     }
 
     public function testZero()
     {
         $result = $this->retrieveResult(0);
 
-        $this->assertTrue(is_array($result));
         $this->assertEmpty($result);
     }
 
@@ -22,7 +26,6 @@ class TestBinaryExplodeLog extends \PHPUnit_Framework_TestCase
         for ($i = -10; $i < 0; ++$i) {
             $result = $this->retrieveResult($i);
 
-            $this->assertTrue(is_array($result));
             $this->assertEmpty($result);
         }
     }
@@ -31,7 +34,6 @@ class TestBinaryExplodeLog extends \PHPUnit_Framework_TestCase
     {
         $result = $this->retrieveResult(2);
 
-        $this->assertTrue(is_array($result));
         $this->assertEquals([2], $result);
     }
 
@@ -39,15 +41,12 @@ class TestBinaryExplodeLog extends \PHPUnit_Framework_TestCase
     {
         $result = $this->retrieveResult(1024);
 
-        $this->assertTrue(is_array($result));
         $this->assertEquals([1024], $result);
     }
 
     public function testSeven()
     {
         $result = $this->retrieveResult(7);
-
-        $this->assertTrue(is_array($result));
 
         foreach ([1, 2, 4] as $test) {
             $this->assertTrue(in_array($test, $result));
