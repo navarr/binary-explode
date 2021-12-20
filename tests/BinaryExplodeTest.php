@@ -1,7 +1,8 @@
 <?php
 
-namespace Navarr\ExplodeBitwise\Test;
+namespace Navarr\BinaryExploder\Test;
 
+use Navarr\BinaryExploder\LinearBinaryExploder;
 use PHPUnit\Framework\TestCase;
 
 class TestBinaryExplode extends TestCase
