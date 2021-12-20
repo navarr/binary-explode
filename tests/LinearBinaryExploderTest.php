@@ -5,7 +5,7 @@ namespace Navarr\BinaryExploder\Test;
 use Navarr\BinaryExploder\LinearBinaryExploder;
 use PHPUnit\Framework\TestCase;
 
-class TestBinaryExplode extends TestCase
+class LinearBinaryExploderTest extends TestCase
 {
     public function retrieveResult($number)
     {

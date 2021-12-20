@@ -20,6 +20,11 @@
       "Navarr\\BinaryExploder\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Navarr\\BinaryExploder\\Test\\": "tests/"
+    }
+  },
   "require-dev": {
     "phpunit/phpunit": "^9.5",
     "phpstan/phpstan": "^1",

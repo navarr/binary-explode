@@ -5,7 +5,7 @@ namespace Navarr\BinaryExploder\Test;
 use Navarr\BinaryExploder\LogarithmicBinaryExploder;
 use PHPUnit\Framework\TestCase;
 
-class TestBinaryExplodeLog extends TestCase
+class LogarithmicBinaryExploderTest extends TestCase
 {
     public function retrieveResult($number)
     {
