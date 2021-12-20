@@ -16,7 +16,7 @@ namespace Navarr\BinaryExploder;
  */
 class LogarithmicBinaryExploder implements BinaryExploderInterface
 {
-    public function execute(int $value): iterable
+    public function explode(int $value): iterable
     {
         while($value > 0) {
             $power = (int)log($value, 2);
