@@ -2,7 +2,9 @@
 
 namespace Navarr\ExplodeBitwise\Test;
 
-class TestBinaryExplode extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class TestBinaryExplode extends TestCase
 {
     public function retrieveResult($number)
     {
