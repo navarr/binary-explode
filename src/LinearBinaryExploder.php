@@ -11,7 +11,7 @@ namespace Navarr\BinaryExploder;
 
 /**
  * Linear approach to determining the binary components of a number.
- * 
+ *
  * This approach is fastest for numbers that are unlikely to be a power of 2
  */
 class LinearBinaryExploder implements BinaryExploderInterface
