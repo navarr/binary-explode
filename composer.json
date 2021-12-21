@@ -10,6 +10,11 @@
     },
     {
       "name": "Matthew Trimmer"
+    },
+    {
+      "name": "James Corrao",
+      "email": "james.pm.corrao@gmail.com",
+      "homepage": "https://github.com/jpmc"
     }
   ],
   "require": {
