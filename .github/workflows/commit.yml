@@ -1,5 +1,8 @@
 name: Continuous Integration
-on: [push]
+on:
+  push:
+  schedule:
+    - cron: 0 0 * * 0
 
 jobs:
   phpunit:
@@ -8,7 +11,7 @@ jobs:
     strategy:
       matrix:
         os: [unbuntu-latest, macos-latest, windows-latest]
-        php: ['7.4', '8.0', '8.1']
+        php: ['7.4', '8.0', '8.1', '8.2']
     steps:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -22,6 +25,11 @@ jobs:
 
       - name: Install Dependencies
         run: composer install
+        if: ${{ matrix.php != '8.2' }}
+        
+      - name: Install Dependencies (Ignore Platform Req)
+        run: composer install --ignore-platform-req=php
+        if: ${{ matrix.php == '8.2' }}
 
       - name: Test
         run: vendor/bin/phpunit tests --testdox --coverage-clover coverage.xml
@@ -36,11 +44,14 @@ jobs:
   phpstan:
     name: Static Analysis Check
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['8.1', '8.2']
     steps:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: ${{ matrix.php }}
           tools: composer:v2
 
       - name: Checkout Repository
@@ -48,6 +59,11 @@ jobs:
 
       - name: Install Dependencies
         run: composer install
+        if: ${{ matrix.php != '8.2' }}
+        
+      - name: Install Dependencies (Ignore Platform Req)
+        run: composer install --ignore-platform-req=php
+        if: ${{ matrix.php == '8.2' }}
 
       - name: Run PHPStan
         run: vendor/bin/phpstan
@@ -67,6 +83,11 @@ jobs:
 
       - name: Install Dependencies
         run: composer install
+        if: ${{ matrix.php != '8.2' }}
+        
+      - name: Install Dependencies (Ignore Platform Req)
+        run: composer install --ignore-platform-req=php
+        if: ${{ matrix.php == '8.2' }}
 
       - name: PHP Code Sniffer
         run: vendor/bin/phpcs
@@ -75,11 +96,14 @@ jobs:
     name: Infection Check
     runs-on: ubuntu-latest
     continue-on-error: true
+    strategy:
+      matrix:
+        php: ['8.1', '8.2']
     steps:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: ${{ matrix.php }}
           coverage: xdebug
           tools: composer:v2
           ini-values: error_reporting=-1
@@ -87,8 +111,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: composer install
+        if: ${{ matrix.php != '8.2' }}
+        
+      - name: Install Dependencies (Ignore Platform Req)
+        run: composer install --ignore-platform-req=php
+        if: ${{ matrix.php == '8.2' }}
 
       - name: Check for Mutants
         run: vendor/bin/infection --threads=$(nproc) --min-msi=100 --no-progress --logger-github
