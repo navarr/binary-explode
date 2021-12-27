@@ -22,6 +22,11 @@ jobs:
 
       - name: Install Dependencies
         run: composer install
+        if: ${{ matrix.php != '8.2' }}
+        
+      - name: Install Dependencies (Ignore Platform Req)
+        run: composer install --ignore-platform-req=php
+        if: ${{ matrix.php == '8.2' }}
 
       - name: Test
         run: vendor/bin/phpunit tests --testdox --coverage-clover coverage.xml
@@ -48,6 +53,11 @@ jobs:
 
       - name: Install Dependencies
         run: composer install
+        if: ${{ matrix.php != '8.2' }}
+        
+      - name: Install Dependencies (Ignore Platform Req)
+        run: composer install --ignore-platform-req=php
+        if: ${{ matrix.php == '8.2' }}
 
       - name: Run PHPStan
         run: vendor/bin/phpstan
@@ -92,8 +102,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: composer install
+        if: ${{ matrix.php != '8.2' }}
+        
+      - name: Install Dependencies (Ignore Platform Req)
+        run: composer install --ignore-platform-req=php
+        if: ${{ matrix.php == '8.2' }}
 
       - name: Check for Mutants
         run: vendor/bin/infection --threads=$(nproc) --min-msi=100 --no-progress --logger-github
