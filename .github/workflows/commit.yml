@@ -82,6 +82,7 @@ jobs:
           php-version: 8.1
           coverage: xdebug
           tools: composer:v2
+          ini-values: error_reporting=-1
 
       - name: Checkout Repository
         uses: actions/checkout@v2
