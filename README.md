@@ -5,6 +5,7 @@
 [![License](http://poser.pugx.org/navarr/binary-explode/license)](https://packagist.org/packages/navarr/binary-explode)  
 ![Tests](https://github.com/navarr/binary-explode/actions/workflows/commit.yml/badge.svg)
 ![Code Coverage](https://codecov.io/gh/navarr/binary-explode/branch/master/graph/badge.svg?token=BHTKOZZDR3)
+[![Mutation Score](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fnavarr%2Fbinary-explode%2Fmain)](https://dashboard.stryker-mutator.io/reports/github.com/navarr/binary-explode/main)
 
 This package provides two functions usable to convert a number into an array of it's binary components.
 
