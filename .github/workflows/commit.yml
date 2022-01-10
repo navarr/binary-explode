@@ -121,5 +121,5 @@ jobs:
 
       - name: Check for Mutants
         env:
-          INFECTION_BADGE_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
+          INFECTION_BADGE_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
         run: vendor/bin/infection --threads=$(nproc) --min-msi=100 --no-progress --logger-github
