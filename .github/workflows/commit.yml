@@ -22,17 +22,13 @@ jobs:
 
       - name: Install Dependencies
         run: composer install
-        if: ${{ matrix.php != '8.2' }}
-        
-      - name: Install Dependencies (Ignore Platform Req)
-        run: composer install --ignore-platform-req=php
-        if: ${{ matrix.php == '8.2' }}
 
       - name: Test
         run: vendor/bin/phpunit tests --testdox --coverage-clover coverage.xml
 
       - name: Upload Coverage Artifact
         uses: actions/upload-artifact@v4
+        if: ${{ matrix.php == '8.4' }}
         with:
           name: codecov
           path: coverage.xml
@@ -71,11 +67,6 @@ jobs:
 
       - name: Install Dependencies
         run: composer install
-        if: ${{ matrix.php != '8.2' }}
-        
-      - name: Install Dependencies (Ignore Platform Req)
-        run: composer install --ignore-platform-req=php
-        if: ${{ matrix.php == '8.2' }}
 
       - name: Run PHPStan
         run: vendor/bin/phpstan
@@ -95,11 +86,6 @@ jobs:
 
       - name: Install Dependencies
         run: composer install
-        if: ${{ matrix.php != '8.2' }}
-        
-      - name: Install Dependencies (Ignore Platform Req)
-        run: composer install --ignore-platform-req=php
-        if: ${{ matrix.php == '8.2' }}
 
       - name: PHP Code Sniffer
         run: vendor/bin/phpcs
@@ -125,11 +111,6 @@ jobs:
 
       - name: Install Dependencies
         run: composer install
-        if: ${{ matrix.php != '8.2' }}
-        
-      - name: Install Dependencies (Ignore Platform Req)
-        run: composer install --ignore-platform-req=php
-        if: ${{ matrix.php == '8.2' }}
 
       - name: Check for Mutants
         env:
