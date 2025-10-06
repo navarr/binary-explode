@@ -28,7 +28,7 @@ jobs:
 
       - name: Upload Coverage Artifact
         uses: actions/upload-artifact@v4
-        if: ${{ matrix.php == '8.4' }}
+        if: ${{ matrix.php == '8.4' && matrix.os == 'ubuntu-latest'}}
         with:
           name: codecov
           path: coverage.xml
